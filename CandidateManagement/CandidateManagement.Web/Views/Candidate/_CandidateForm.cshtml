@@ -1,0 +1,50 @@
+@model CandidateManagement.Web.Models.CandidateViewModel
+
+<div class="mb-3">
+    <label asp-for="FullName" class="form-label"></label>
+    <input asp-for="FullName" class="form-control" />
+    <span asp-validation-for="FullName" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Email" class="form-label"></label>
+    <input asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Phone" class="form-label"></label>
+    <input asp-for="Phone" class="form-control" />
+    <span asp-validation-for="Phone" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Skills" class="form-label"></label>
+    <textarea asp-for="Skills" class="form-control" rows="3"></textarea>
+    <span asp-validation-for="Skills" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Experience" class="form-label"></label>
+    <input asp-for="Experience" class="form-control" />
+    <span asp-validation-for="Experience" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Status" class="form-label"></label>
+    <select asp-for="Status" class="form-select" asp-items="new SelectList(ViewBag.StatusOptions)">
+        <option value="">-- Chọn trạng thái --</option>
+    </select>
+    <span asp-validation-for="Status" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="CvFile" class="form-label"></label>
+    <input asp-for="CvFile" class="form-control" type="file" accept=".pdf" />
+    <span asp-validation-for="CvFile" class="text-danger"></span>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.CvUrl))
+{
+    <div class="mb-3">
+        <label class="form-label">CV hiện tại</label>
+        <div>
+            <a class="btn btn-sm btn-outline-info" href="@Model.CvUrl" target="_blank">Xem CV</a>
+        </div>
+    </div>
+}
+

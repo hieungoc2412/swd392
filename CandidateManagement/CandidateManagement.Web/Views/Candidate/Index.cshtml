@@ -1,0 +1,42 @@
+@model IEnumerable<CandidateManagement.Web.Models.CandidateViewModel>
+@{
+    ViewBag.Title = "Danh sách ứng viên";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3">Ứng viên</h1>
+    <a class="btn btn-primary" asp-action="Create">Thêm ứng viên</a>
+</div>
+
+<table class="table table-striped table-hover align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Họ tên</th>
+            <th>Email</th>
+            <th>Điện thoại</th>
+            <th>Trạng thái</th>
+            <th>Ngày tạo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>
+                    <span class="badge bg-secondary">@item.Status</span>
+                </td>
+                <td>@item.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy")</td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-primary me-1" asp-action="Details" asp-route-id="@item.CandidateId">Chi tiết</a>
+                    <a class="btn btn-sm btn-outline-secondary me-1" asp-action="Edit" asp-route-id="@item.CandidateId">Sửa</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.CandidateId">Xoá</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
